@@ -57,6 +57,6 @@ async def reload_codebase():
 )
 async def reload(event):
     "To reload Your bot"
-    cat = await edit_or_reply(event, "`Wait 2-3 min, reloading...`")
+    cat = await edit_or_reply(event, "`انتظر 2-3 دقيقة, جار تحديث سورس الجوكر...`")
     await reload_codebase()
     await event.client.reload(cat)
