@@ -835,7 +835,7 @@ async def disable_handler(event):
     messi = True
     await event.reply('تم تعطيل الإرسال.')
 
-@l313l.on(events.NewMessage(pattern='التكبر تفعيل
+@l313l.on(events.NewMessage(pattern='التكبر تفعيل'))
 async def enable_handler(event):
     global messi
     messi = False
