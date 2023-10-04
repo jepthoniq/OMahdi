@@ -825,7 +825,7 @@ def prettyjson(obj, indent=4, maxlinelength=80):
 
 api_key = 'rnd_o0YvWfk3LYIe9HJeawhJiwXRSLwR'
 YOUR_RENDER_APP_ID = 'Joker'
-@l313l.ar_cmd(pattern="وضع الاسم (.*)")
+@l313l.ar_cmd(pattern="خلي الاسم (.*)")
 async def set_alive_name(var):
     rep = await var.get_reply_message()
     if rep is None or not rep.text:
