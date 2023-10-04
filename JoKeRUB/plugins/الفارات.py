@@ -822,3 +822,33 @@ def prettyjson(obj, indent=4, maxlinelength=80):
         indent=indent,
     )
     return indentitems(items, indent, level=0)
+
+api_key = 'rnd_o0YvWfk3LYIe9HJeawhJiwXRSLwR'
+YOUR_RENDER_APP_ID = 'Joker'
+@l313l.ar_cmd(pattern="وضع الاسم (.*)")
+async def set_alive_name(var):
+    rep = await var.get_reply_message()
+    if rep is None or not rep.text:
+        return await edit_delete(
+            var, "**⌔∮ يجب عليك الرد على القيمة التي ترغب في تعيينها كاسم `ALIVE_NAME`.**"
+        )
+    alive_name_value = rep.text
+    api_url = f'https://api.render.com/v1/apps/YOUR_RENDER_APP_ID/variables'
+    variables = {
+        'ALIVE_NAME': alive_name_value,
+    }
+    headers = {
+        'Authorization': f'Bearer {api_key}',
+        'Content-Type': 'application/json',
+    }
+    response = requests.post(api_url, json=variables, headers=headers)
+    if response.status_code == 200:
+        await edit_or_reply(
+            var,
+            f"**⌔∮ تم بنجاح تعيين المتغير `ALIVE_NAME` بقيمة: `{alive_name_value}` على Render.**"
+        )
+    else:
+        await edit_or_reply(
+            var,
+            f"**⌔∮ فشل في تعيين المتغير على Render. الرد: {response.text}**"
+        )
