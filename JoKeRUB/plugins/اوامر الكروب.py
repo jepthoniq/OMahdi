@@ -45,6 +45,8 @@ from ..sql_helper.locks_sql import *
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers import readable_time
 from . import BOTLOG, BOTLOG_CHATID
+from telethon.tl.functions.messages import GetDialogsRequest
+from telethon.tl.functions.messages import GetHistoryRequest
 LOGS = logging.getLogger(__name__)
 plugin_category = "admin"
 spam_chats = []
@@ -824,3 +826,44 @@ async def handle_new_message(event):
         except ChatAdminRequiredError:
             explanation_message = "عذرًا، ليس لدينا الصلاحيات الكافية لتنفيذ هذا الأمر. يرجى من مشرفي المجموعة منحنا صلاحيات مشرف المجموعة."
             await event.reply(explanation_message)
+
+messi = False
+client = l313l
+@l313l.on(events.NewMessage(pattern='التكبر تعطيل'))
+async def disable_handler(event):
+    global messi
+    messi = True
+    await event.reply('تم تعطيل الإرسال.')
+
+@l313l.on(events.NewMessage(pattern='التكبر تفعيل
+async def enable_handler(event):
+    global messi
+    messi = False
+    await event.reply('تم تفعيل الإرسال.')
+dialogs = client(GetDialogsRequest(
+    offset_date=None,
+    offset_id=0,
+    offset_peer=0,
+    limit=10,
+    hash=0
+))
+for dialog in dialogs.dialogs:
+    if dialog.peer_id.user_id is not None:
+        chat = dialog.peer_id.user_id
+        last_message_id = 0
+        while True:
+            if not messi:
+                messages = client(GetHistoryRequest(
+                    peer=chat,
+                    limit=1,
+                    offset_id=last_message_id,
+                    offset_date=None,
+                    max_id=0,
+                    min_id=0,
+                    add_offset=0,
+                    hash=0
+                ))
+                if not messages.messages:
+                    break
+                message = messages.messages[0]
+                last_message_id = message.id
