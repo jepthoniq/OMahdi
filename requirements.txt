@@ -1,4 +1,7 @@
 https://github.com/LonamiWebs/Telethon/archive/v1.zip
+pydub
+ocrspace
+ShazamAPI
 selenium
 Flask
 flask_restful
