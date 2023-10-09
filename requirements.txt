@@ -73,6 +73,7 @@ telegraph
 tgcrypto
 validators
 vcsi
+ipaddress
 wand
 ujson==5.8.0
 youtube_dl==2021.5.16
