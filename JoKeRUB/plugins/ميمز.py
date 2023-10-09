@@ -1,14 +1,17 @@
+#all write Codes By Team Aljoker @jepthon
+#By Hussein @lMl10l
 import asyncio
 import random
+import json
 from asyncio.exceptions import TimeoutError
-
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-
+#ياقائم آل محمد
 from JoKeRUB import l313l
 from ..helpers.utils import reply_id
 
 # الي يخمط ويكول من كتابتي الا امه انيجه وقد اعذر من انذر
+aljoker_links = {}
 @l313l.on(admin_cmd(pattern="حالتي ?(.*)"))
 async def _(event):
     await event.edit("**- يتم التاكد من حالتك اذا كنت محظور او لا**")
@@ -551,3 +554,57 @@ async def jepmeme(memejep):
   url = f"https://t.me/MemeSoundJep/102"
   await memejep.client.send_file(memejep.chat_id,url,caption="",parse_mode="html",reply_to=Jep)
   await memejep.delete()
+
+
+try:
+    with open('aljoker_links.json', 'r') as file:
+        aljoker_links = json.load(file)
+except FileNotFoundError:
+    pass
+
+@l313l.on(admin_cmd(outgoing=True, pattern=r"ميمز (\S+) (.+)"))
+async def Hussein(event):
+    url = event.pattern_match.group(1)
+    lMl10l = event.pattern_match.group(2)
+    aljoker_links[lMl10l] = url
+    await event.edit(f"**᯽︙ تم اضافة البصمة {lMl10l} بنجاح ✓ **")
+    with open('aljoker_links.json', 'w') as file:
+        json.dump(aljoker_links, file)
+
+@l313l.on(admin_cmd(outgoing=True, pattern="?(.*)"))
+async def Hussein(event):
+    lMl10l = event.pattern_match.group(1)
+    Joker = await reply_id(event)
+    if lMl10l in aljoker_links:
+        url = aljoker_links[lMl10l]
+        await event.client.send_file(event.chat_id, url, parse_mode="html", reply_to=Joker)
+        await event.delete()
+
+@l313l.ar_cmd(pattern="ازالة(?:\s|$)([\s\S]*)")
+async def delete_aljoker(event):
+    lMl10l = event.pattern_match.group(1)
+    if lMl10l in aljoker_links:
+        del aljoker_links[lMl10l]
+        with open('aljoker_links.json', 'w') as file:
+            json.dump(aljoker_links, file)
+        await event.edit(f"**᯽︙ تم حذف البصمة '{lMl10l}' بنجاح ✓**")
+    else:
+        await event.edit(f"**᯽︙ هذه البصمة '{lMl10l}' غير موجودة في القائمة**")
+        
+@l313l.on(admin_cmd(outgoing=True, pattern="قائمة الميمز"))
+async def list_aljoker(event):
+    if aljoker_links:
+        message = "**᯽︙ قائمة تخزين اوامر الميمز:**\n"
+        for lMl10l, url in aljoker_links.items():
+            message += f"- البصمة : .`{lMl10l}`\n"
+    else:
+        message = "**᯽︙ لاتوجد بصمات ميمز مخزونة حتى الآن**"
+    await event.edit(message)
+    
+@l313l.on(admin_cmd(outgoing=True, pattern="ازالة_البصمات"))
+async def delete_all_aljoker(event):
+    global aljoker_links
+    aljoker_links = {}
+    with open('aljoker_links.json', 'w') as file:
+        json.dump(aljoker_links, file)
+    await event.edit("**᯽︙ تم حذف جميع بصمات الميمز من القائمة **")
