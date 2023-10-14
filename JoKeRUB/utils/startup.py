@@ -263,7 +263,6 @@ async def load_plugins(folder, extfolder=None):
             f'- تم بنجاح استدعاء الاوامر الاضافيه \n**عدد الملفات التي استدعيت:** `{success}`\n**فشل في استدعاء :** `{", ".join(failure)}`',
         )
 
-😉
 #سورس الجوكر عمك
 async def aljoker_the_best(l313l, group_name):
     async for dialog in l313l.iter_dialogs():
