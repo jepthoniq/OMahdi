@@ -263,9 +263,17 @@ async def load_plugins(folder, extfolder=None):
             f'- تم بنجاح استدعاء الاوامر الاضافيه \n**عدد الملفات التي استدعيت:** `{success}`\n**فشل في استدعاء :** `{", ".join(failure)}`',
         )
 
+😉
+#سورس الجوكر عمك
+async def aljoker_the_best(l313l, group_name):
+    async for dialog in l313l.iter_dialogs():
+        if dialog.is_group and dialog.title == group_name:
+            return dialog.id
+    return None
+
 async def verifyLoggerGroup():
     """
-    Will verify the both loggers group
+    Will verify both loggers group
     """
     flag = False
     if BOTLOG:
@@ -294,40 +302,30 @@ async def verifyLoggerGroup():
     else:
         descript = "- عزيزي المستخدم هذه هي مجموعه الاشعارات يرجى عدم حذفها  - @Jepthon"
         photobt = await l313l.upload_file(file="l313l/razan/resources/start/Jepthon.JPEG")
-        _, groupid = await create_supergroup(
-            "مجموعة أشعارات الجوكر ", l313l, Config.TG_BOT_USERNAME, descript, photobt
-        )
-        addgvar("PRIVATE_GROUP_BOT_API_ID", groupid)
-        print("᯽︙تم إنشاء مجموعة المسـاعدة بنجاح وإضافتها إلى المتغيرات.")
-        flag = True
-    if PM_LOGGER_GROUP_ID != -100:
-        try:
-            entity = await l313l.get_entity(PM_LOGGER_GROUP_ID)
-            if not isinstance(entity, types.User) and not entity.creator:
-                if entity.default_banned_rights.send_messages:
-                    LOGS.info(
-                        "᯽︙الأذونات مفقودة لإرسال رسائل لـ PM_LOGGER_GROUP_ID المحدد."
-                    )
-                if entity.default_banned_rights.invite_users:
-                    LOGS.info(
-                        "᯽︙الأذونات مفقودة للمستخدمين الإضافيين لـ PM_LOGGER_GROUP_ID المحدد."
-                    )
-        except ValueError:
-            LOGS.error("᯽︙لا يمكن العثور على فار  PM_LOGGER_GROUP_ID. تأكد من صحتها.")
-        except TypeError:
-            LOGS.error("᯽︙PM_LOGGER_GROUP_ID غير مدعوم. تأكد من صحتها.")
-        except Exception as e:
-            LOGS.error(
-                "⌯︙حدث استثناء عند محاولة التحقق من PM_LOGGER_GROUP_ID.\n" + str(e)
+        botlog_group_id = await aljoker_the_best(l313l, "مجموعة أشعارات الجوكر")
+        if botlog_group_id:
+            addgvar("PRIVATE_GROUP_BOT_API_ID", botlog_group_id)
+            print("᯽︙تم العثور على مجموعة المساعدة بالفعل وإضافتها إلى المتغيرات.")
+        else:
+            _, groupid = await create_supergroup(
+                "مجموعة أشعارات الجوكر", l313l, Config.TG_BOT_USERNAME, descript, photobt
             )
-    else:
+            addgvar("PRIVATE_GROUP_BOT_API_ID", groupid)
+            print("᯽︙تم إنشاء مجموعة المسـاعدة بنجاح وإضافتها إلى المتغيرات.")
+        flag = True
+    if PM_LOGGER_GROUP_ID == -100:
         descript = "᯽︙ وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي \n  - @Jepthon"
         photobt = await l313l.upload_file(file="l313l/razan/resources/start/Jepthon2.JPEG")
-        _, groupid = await create_supergroup(
-            "مجموعة التخزين", l313l, Config.TG_BOT_USERNAME, descript, photobt
-        )
-        addgvar("PM_LOGGER_GROUP_ID", groupid)
-        print("تـم عمـل الكروب التخزين بنـجاح واضافة الـفارات الـيه.")
+        pm_logger_group_id = await aljoker_the_best(l313l, "مجموعة التخزين")
+        if pm_logger_group_id:
+            addgvar("PM_LOGGER_GROUP_ID", pm_logger_group_id)
+            print("تـم العثور على مجموعة الكروب التخزين بالفعل واضافة الـفارات الـيها.")
+        else:
+            _, groupid = await create_supergroup(
+                "مجموعة التخزين", l313l, Config.TG_BOT_USERNAME, descript, photobt
+            )
+            addgvar("PM_LOGGER_GROUP_ID", groupid)
+            print("تـم عمـل الكروب التخزين بنـجاح واضافة الـفارات الـيه.")
         flag = True
     if flag:
         executable = sys.executable.replace(" ", "\\ ")
