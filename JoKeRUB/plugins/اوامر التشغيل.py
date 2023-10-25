@@ -41,8 +41,8 @@ async def aljoker_4ever():
     if os.path.exists("jepvc"):
         await _catutils.runcmd("rm -rf jepvc")
 @l313l.ar_cmd(
-    pattern="اعادة تشغيل",
-    command=("اعادة تشغيل", plugin_category),
+    pattern="تحديث",
+    command=("تحديث", plugin_category),
     info={
         "header": "To reload your bot in vps/ similar to restart",
         "flags": {
@@ -57,9 +57,9 @@ async def aljoker_4ever():
 )
 async def Hussein(event):
     "To reload Your bot"
-    cat = await edit_or_reply(event, "** ᯽︙ انتظر 2-3 دقيقة, جارِ اعادة التشغيل...**")
+    joker = await edit_or_reply(event, "** ᯽︙ انتظر 2-3 دقيقة, جارِ اعادة التشغيل...**")
     await aljoker_4ever()
-    await event.client.reload(cat)
+    await event.client.reload(joker)
 
 @l313l.ar_cmd(
     pattern="اطفاء$",
