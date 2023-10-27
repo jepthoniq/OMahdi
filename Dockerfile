@@ -1,4 +1,4 @@
-FROM jepthoniq/jepthon:slim-buster
+FROM python:3.9.7-slim-buster
 
 #clonning repo 
 RUN git clone https://github.com/almul8ab/yamosa.git /root/JoKeRUB
