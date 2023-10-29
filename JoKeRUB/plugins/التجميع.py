@@ -452,7 +452,7 @@ async def _(event):
 
 @l313l.on(admin_cmd(pattern="(تجميع عراق|تجميع العراق)"))
 async def _(event):
-    await event.edit("**᯽︙سيتم تجميع النقاط من بوت المليار , قبل كل شي تأكد من انك قمت بالانضمام الى القنوات الاشتراك الاجباري للبوت لعدم حدوث اخطاء**")
+    await event.edit("**᯽︙سيتم تجميع النقاط من بوت العراق , قبل كل شي تأكد من انك قمت بالانضمام الى القنوات الاشتراك الاجباري للبوت لعدم حدوث اخطاء**")
     channel_entity = await l313l.get_entity(bot_username8)
     await l313l.send_message(bot_username8, '/start')
     await asyncio.sleep(4)
