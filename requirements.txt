@@ -1,4 +1,4 @@
-Telethon
+https://github.com/LonamiWebs/Telethon/archive/v1.zip
 pydub
 ocrspace
 ShazamAPI
