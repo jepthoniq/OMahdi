@@ -3,6 +3,7 @@ import time
 from JoKeRUB import BOTLOG_CHATID
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 import asyncio
+from telethon.tl import types
 from ..Config import Config
 import requests
 from telethon import Button, events
