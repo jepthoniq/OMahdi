@@ -29,6 +29,7 @@ from .pluginmanager import load_module
 from .tools import create_supergroup
 LOGS = logging.getLogger("JoKeRUB")
 logging.getLogger('telethon.network.mtprotosender').setLevel(logging.ERROR)
+logging.getLogger('telethon.client.users').setLevel(logging.ERROR)
 ##Reda hands here
 cmdhr = Config.COMMAND_HAND_LER
 bot = l313l
