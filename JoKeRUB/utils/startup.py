@@ -31,6 +31,7 @@ LOGS = logging.getLogger("JoKeRUB")
 logging.getLogger('telethon.network.mtprotosender').setLevel(logging.ERROR)
 logging.getLogger('telethon.client.users').setLevel(logging.ERROR)
 logging.getLogger('telethon').setLevel(logging.WARNING)
+logging.getLogger('telethon.network.connection.connection').setLevel(logging.ERROR)
 ##Reda hands here
 cmdhr = Config.COMMAND_HAND_LER
 bot = l313l
