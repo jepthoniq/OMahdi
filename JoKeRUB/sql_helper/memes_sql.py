@@ -27,3 +27,9 @@ def add_link(key, url):
     link = AljokerLink(str(key), str(url))
     SESSION.add(link)
     SESSION.commit()
+    
+def delete_link(key):
+    link = SESSION.query(AljokerLink).get(str(key))
+    if link:
+        SESSION.delete(link)
+        SESSION.commit()
