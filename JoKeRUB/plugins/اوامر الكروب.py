@@ -992,7 +992,6 @@ async def handle_guess(event):
 async def handle_incoming_message(event):
     global group_game_status
     chat_id = event.chat_id
-    bot_entity = await event.get_input_chat()
     if chat_id not in group_game_status:
         group_game_status[chat_id] = {
             'is_game_started2': False,
