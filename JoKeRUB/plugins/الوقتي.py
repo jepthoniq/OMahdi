@@ -43,10 +43,8 @@ auto_group_photo_path = os.path.join(os.getcwd(), "JoKeRUB", "photo_pfp.png")
 
 digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/63a826d5e5f0003e006a0.jpg"
 digitalgrouppfp = Config.DIGITAL_GROUP_PIC or "https://telegra.ph/file/63a826d5e5f0003e006a0.jpg"
-lMl10l = Config.TIME_JEP or ""
 jep = Config.DEFAULT_PIC or "JoKeRUB/helpers/styles/PaybAck.ttf"
 normzltext = "1234567890"
-namerzfont = Config.JP_FN or "𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵𝟬"
 namew8t = Config.NAME_ET or "اسم وقتي"
 biow8t = Config.BIO_ET or "بايو وقتي"
 phow8t = Config.PHOTO_ET or "الصورة الوقتية"
@@ -181,12 +179,14 @@ async def autoname_loop():
         HM = time.strftime("%I:%M")
         for normal in HM:
             if normal in normzltext:
+                namerzfont = gvarstatus("JP_FN") or "𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗𝟎"
                 namefont = namerzfont[normzltext.index(normal)]
                 HM = HM.replace(normal, namefont)
+                lMl10l = gvarstatus("TIME_JEP") or ""
         name = f"{lMl10l} {HM}"
         LOGS.info(name)
         try:
-            await l313l(functions.account.UpdateProfileRequest(last_name=name))
+            await l313l(functions.account.UpdateProfileRequest(first_name=name))
         except FloodWaitError as ex:
             LOGS.warning(str(ex))
             await asyncio.sleep(120)
@@ -201,8 +201,10 @@ async def autobio_loop():
         HI = time.strftime("%I:%M")
         for normal in HI:
             if normal in normzltext:
+                namerzfont = gvarstatus("JP_FN") or "𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗𝟎"
                 namefont = namerzfont[normzltext.index(normal)]
                 HI = HI.replace(normal, namefont)
+                DEFAULTUSERBIO = gvarstatus("DEFAULT_BIO") or " ﴿ لا تَحزَن إِنَّ اللَّهَ مَعَنا ﴾  "
         bio = f"{DEFAULTUSERBIO} {HI}"
         LOGS.info(bio)
         try:
