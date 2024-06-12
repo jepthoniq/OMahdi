@@ -23,7 +23,6 @@ services:
       - key: STRING_SESSION
         sync: false
       - key: TG_BOT_TOKEN
-        value: توكن البوت
         sync: false
       - key: PYTHON_VERSION
         value: 3.10.9
