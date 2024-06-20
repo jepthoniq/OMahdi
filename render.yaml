@@ -5,6 +5,7 @@ databases:
     plan: free
 services:
   - type: web
+    name:
     plan: free
     env: python
     buildCommand: pip install -U -r requirements.txt
