@@ -10,7 +10,6 @@ flask_restful
 setuptools
 wheel
 cloudscraper
-pymongo[srv]
 speechrecognition
 colour
 qrcode
