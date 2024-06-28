@@ -1,5 +1,7 @@
 telethon
 pydub
+flask
+flask_restful
 ocrspace
 ShazamAPI
 selenium
