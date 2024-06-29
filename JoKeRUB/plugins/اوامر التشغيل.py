@@ -32,11 +32,12 @@ async def aljoker_4ever():
     REPO = "OMahdi"
     if REPO:
         await _catutils.runcmd(f"git clone -b {BRANCH} https://github.com/jepthoniq/{REPO}.git TempCat")
-        file_list = os.listdir("OMahdi")
+        file_list = os.listdir("TempCat")
         for file in file_list:
             await _catutils.runcmd(f"rm -rf {file}")
-            await _catutils.runcmd(f"mv ./OMahdi/{file} ./")
+            await _catutils.runcmd(f"mv ./TempCat/{file} ./")
         await _catutils.runcmd("pip3 install --no-cache-dir -r requirements.txt")
+        await _catutils.runcmd("rm -rf TempCat")
     if os.path.exists("jepvc"):
         await _catutils.runcmd("rm -rf jepvc")
 @l313l.ar_cmd(
