@@ -40,13 +40,11 @@ async def monito_p_m_s(event):  # sourcery no-metrics
                 LOG_CHATS_.RECENT_USER = chat.id
                 if LOG_CHATS_.NEWPM:
                     if LOG_CHATS_.COUNT > 1:
-                        try:
-                            await LOG_CHATS_.NEWPM.edit(
+                        await LOG_CHATS_.NEWPM.edit(
                                 LOG_CHATS_.NEWPM.text.replace(
                                     " **📮┊رسـاله جـديده**", f"{LOG_CHATS_.COUNT} **رسـائل**"
                                 )
                             )
-                        except BaseException as er:
                     else:
                         await event.client.send_message(
 Config.PM_LOGGER_GROUP_ID,
