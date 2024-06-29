@@ -1,1 +1,1 @@
-worker: python3 -m JoKeRUB
+web: python3 -m JoKeRUB
