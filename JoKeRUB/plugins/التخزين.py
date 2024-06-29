@@ -47,7 +47,6 @@ async def monito_p_m_s(event):  # sourcery no-metrics
                                 )
                             )
                         except BaseException as er:
-                            print(f"صار خطأ\n{er}")
                     else:
                         await event.client.send_message(
 Config.PM_LOGGER_GROUP_ID,
