@@ -2,7 +2,7 @@ import asyncio
 
 from JoKeRUB import l313l
 from JoKeRUB.core.logger import logging
-
+from telethon.errors.rpcerrorlist import MessageNotModifiedError
 from ..Config import Config
 from ..core.managers import edit_delete
 from ..helpers.tools import media_type
@@ -39,18 +39,18 @@ async def monito_p_m_s(event):  # sourcery no-metrics
             if LOG_CHATS_.RECENT_USER != chat.id:
                 LOG_CHATS_.RECENT_USER = chat.id
                 if LOG_CHATS_.NEWPM:
-                    if LOG_CHATS_.COUNT > 1:
-                        await LOG_CHATS_.NEWPM.edit(
-                                LOG_CHATS_.NEWPM.text.replace(
-                                    " **📮┊رسـاله جـديده**", f"{LOG_CHATS_.COUNT} **رسـائل**"
-                                )
-                            )
+                    new_text = LOG_CHATS_.NEWPM.text.replace(
+                        " **📮┊رسـاله جـديده**", f"{LOG_CHATS_.COUNT} **رسـائل**"
+                    )
+                    if LOG_CHATS_.COUNT > 1 and LOG_CHATS_.NEWPM.text != new_text:
+                        try:
+                            await LOG_CHATS_.NEWPM.edit(new_text)
+                        except MessageNotModifiedError:
+                            pass
                     else:
                         await event.client.send_message(
-Config.PM_LOGGER_GROUP_ID,
-                            LOG_CHATS_.NEWPM.text.replace(
-                                " **📮┊رسـاله جـديده**", f"{LOG_CHATS_.COUNT} **رسـائل**"
-                            )
+                            Config.PM_LOGGER_GROUP_ID,
+                            new_text
                         )
                     LOG_CHATS_.COUNT = 0
                 LOG_CHATS_.NEWPM = await event.client.send_message(
