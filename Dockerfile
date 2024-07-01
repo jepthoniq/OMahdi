@@ -8,4 +8,4 @@ RUN npm i -g npm@8.19.4
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 ENV PATH="/home/JoKeRUB/bin:$PATH"
-CMD ["python3", "JoKeRUB"]
+CMD python3 ser.py & python3 -m JoKeRUB
