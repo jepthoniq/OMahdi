@@ -5,5 +5,7 @@ RUN python3 -m pip install --upgrade pip
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get install -y nodejs
 RUN npm i -g npm@8.19.4
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
 ENV PATH="/home/JoKeRUB/bin:$PATH"
-CMD python3 -m JoKeRUB
+CMD ["python3", "JoKeRUB"]
