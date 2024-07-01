@@ -56,7 +56,7 @@ pyfiglet
 PyGithub
 programmingquotes
 pygments
-pyscopg2-binary
+psycopg2-binary
 pylast
 pymediainfo
 pySmartDL
