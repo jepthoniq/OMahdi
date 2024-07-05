@@ -312,14 +312,16 @@ async def aljoker_allnshr(l313l, sleeptimet, message):
     while yaAli:
         for chat in aljoker_chats:
             if chat.is_group:
-                try:
-                    if message.media:
-                        await l313l.send_file(chat.id, message.media, caption=message.text)
-                    else:
-                        await l313l.send_message(chat.id, message.text)
-                except Exception as e:
-                    print(f"Error in sending message to chat {chat.id}: {e}")
+                if chat.title != "فريق الجوكر •Team ALjoker":
+                    try:
+                        if message.media:
+                            await l313l.send_file(chat.id, message.media, caption=message.text)
+                        else:
+                            await l313l.send_message(chat.id, message.text)
+                    except Exception as e:
+                        print(f"Error in sending message to chat {chat.id}: {e}")
         await asyncio.sleep(sleeptimet)
+
 @l313l.ar_cmd(pattern="نشر_كروبات")
 async def Hussein(event):
     await event.delete()
