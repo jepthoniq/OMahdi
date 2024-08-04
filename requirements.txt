@@ -1,5 +1,6 @@
 telethon
 pydub
+aiohttp==3.9.5
 flask
 flask_restful
 ocrspace
