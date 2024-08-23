@@ -114,8 +114,9 @@ async def _(event):
         first_name = first_name.replace("\u2060", "")
     # inspired by https://telegram.dog/afsaI181
     common_chats = 1
+    dc_id = "-"
     try:
-        dc_id = replied_user.photo.dc_id
+        dc_id = replied_user.users[0].photo.dc_id
     except Exception:
         dc_id = "Couldn't fetch DC ID!"
     if spamwatch:
