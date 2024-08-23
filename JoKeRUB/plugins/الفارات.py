@@ -6,7 +6,7 @@ import requests
 import urllib3
 from telethon import events
 from JoKeRUB import l313l
-
+import subprocess
 from ..Config import Config
 from ..core.managers import edit_delete, edit_or_reply
 
@@ -755,21 +755,25 @@ async def dyno_usage(dyno):
 
 @l313l.ar_cmd(pattern="لوك$")
 async def _(dyno):
-    if (HEROKU_APP_NAME is None) or (HEROKU_API_KEY is None):
-        return await edit_delete(
-            dyno,
-            "عزيزي المستخدم يجب ان تعين معلومات الفارات التالية لاستخدام اوامر الفارات\n `HEROKU_API_KEY`\n `HEROKU_APP_NAME`.",
-        )
     try:
-        Heroku = heroku3.from_key(HEROKU_API_KEY)
-        app = Heroku.app(HEROKU_APP_NAME)
-    except BaseException:
-        return await dyno.reply(
-            " يجب التذكر من ان قيمه الفارات التاليه ان تكون بشكل صحيح \nHEROKU_APP_NAME\n HEROKU_API_KEY"
+        
+        result = subprocess.run(
+            ["dmesg", "|", "tail", "-n", "200"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            shell=True
         )
-    data = app.get_log()
+
+        if result.returncode != 0:
+            return await dyno.reply(f"Error fetching logs:\n{result.stderr}")
+
+        data = result.stdout
+    except Exception as e:
+        return await dyno.reply(f"An error occurred:\n{str(e)}")
+
     await edit_or_reply(
-        dyno, data, deflink=True, linktext="**اخر 200 سطر في لوك هيروكو: **"
+        dyno, data, deflink=True, linktext="**اخر 200 سطر في لوك الكونسول: **"
     )
 
 
