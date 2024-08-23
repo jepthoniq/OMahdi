@@ -105,11 +105,7 @@ async def _(event):
     if not replied_user:
         return
     catevent = await edit_or_reply(event, "᯽︙ جار إحضار معلومات المستخدم اننظر قليلا ⚒️")
-    replied_user = await event.client(GetFullUserRequest(replied_user.id))
-    try:
-        await l313l.send_message(event.chat_id, str(replied_user.users[0]))
-    except Exception as err:
-        await l313l.send_message(event.chat_id, f"Error:\n{err}")
+    replied_user = await event.client(GetFullUserRequest(replied_user.id)
     user_id = replied_user.users[0].id
     first_name = html.escape(replied_user.users[0].first_name)
     if first_name is not None:
@@ -119,7 +115,7 @@ async def _(event):
     # inspired by https://telegram.dog/afsaI181
     common_chats = 1
     try:
-        dc_id, location = get_input_location(replied_user.profile_photo)
+        dc_id = replied_user.photo.dc_id
     except Exception:
         dc_id = "Couldn't fetch DC ID!"
     if spamwatch:
